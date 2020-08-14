@@ -1,3 +1,4 @@
+require_relative 'journey_log'
 
 class Journey
 
@@ -26,6 +27,6 @@ PENALTY_FARE = 6
    else 
      PENALTY_FARE
   end
- end
+end
 
 end

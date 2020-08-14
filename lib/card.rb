@@ -1,15 +1,17 @@
 require_relative 'journey'
+require_relative 'journey_log'
 
 class Card
 
-  attr_accessor :balance, :journey
+  attr_accessor :balance, :journey, :journey_log
   
   MAXIMUM_BALANCE = 90
   MINIMUM_FARE = 1
 
-  def initialize(journey = Journey.new)
+  def initialize(journey = Journey.new, log = Journey_log.new)
     @balance = 0
     @journey = journey
+    @journey_log = log
   end
 
   def top_up(amount)
@@ -29,6 +31,8 @@ class Card
   end
 
   
+
+
 private
 
   def deduct(amount)
