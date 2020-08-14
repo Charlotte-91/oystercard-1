@@ -1,17 +1,31 @@
+
 class Journey
 
-attr_reader :journeys, :start
+attr_accessor :start_station, :end_station, :journey
+
+MINIMUM_FARE = 1 
+PENALTY_FARE = 6
 
   def initialize
-    @journeys = []
-    @start
+    @journey = nil
+    @start_station
+    @end_station
   end
 
- def journey_start(entry_station = "entry_station")
-  @start = true
- end
-# @journeys[:entry_station] = entry_station
+  def store_journey
+    @journey = {start_station => @start_station, end_station => @end_station}
+  end
 
-# @journeys[:exit_station] = exit_station 
+ def complete?
+   !!@start_station && !!@end_station 
+ end
+
+ def fare 
+   if complete? == true
+     MINIMUM_FARE
+   else 
+     PENALTY_FARE
+  end
+ end
 
 end

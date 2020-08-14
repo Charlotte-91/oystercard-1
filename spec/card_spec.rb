@@ -41,7 +41,7 @@ end
 
     it 'raises an error if insufficient funds on card for a single journey' do
       subject.balance = 0
-      expect {subject.touch_in}.to raise_error "insufficient funds on card"
+      expect {subject.touch_in('station')}.to raise_error "insufficient funds on card"
     end
 
   end
@@ -56,8 +56,9 @@ end
     end
  
     it 'deducts from the balance when touch out' do
-      subject.touch_in
-      expect {subject.touch_out}.to change {subject.balance}.by -(Card::MINIMUM_FARE)
+      subject.top_up(10)
+      subject.touch_in('station')
+      expect {subject.touch_out('station')}.to change {subject.balance}.by -(Card::MINIMUM_FARE)
     end
 
     

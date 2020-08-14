@@ -7,19 +7,19 @@ describe Journey do
   end
 
   it 'initializes with an empty list of journeys' do
-    expect(subject.journeys).to be_empty
+    expect(subject.journey).to eq(nil)
   end
 
+    it 'stores a journey' do
+      expect(subject.store_journey).to eq subject.journey
+    end
 
-  it 'starts a journey' do
-    #oyster = Card.new
-    expect(subject.journey_start(entry_station)).to eq true
-  end
-  # let(:journey)  { {entry_station: entry_station, exit_station: exit_station } }
+    it 'checks if journey is complete' do
+      subject.start_station = 'station'
+      expect(subject.complete?).to eq false
+    end
 
-  #   it 'stores a journey' do
-  #     subject.journey_start(entry_station)
-  #     subject.journey_end(exit_station)
-  #     expect(subject.journeys).to include journey
-  #   end
+    it 'charges the user a fare' do
+      expect(subject.fare).to eq Journey::PENALTY_FARE
+    end
 end
